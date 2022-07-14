@@ -1,0 +1,11 @@
+<div mat-dialog-title class="dialog-header">
+    {{dialogData.title}}
+</div>
+<div mat-dialog-content>
+    <!-- Here goes he form to create a new contact -->
+    <div>The form goes here</div>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button type="button" color="primary" (click)="onSubmit()">{{dialogData.yesButton}}</button>
+</div>
