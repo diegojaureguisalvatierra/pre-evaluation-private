@@ -1,9 +1,13 @@
 package org.fundacionjala.contacts.models;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Table(name = "contact")
 public class Contact {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
     private Long userId;
     private String name;

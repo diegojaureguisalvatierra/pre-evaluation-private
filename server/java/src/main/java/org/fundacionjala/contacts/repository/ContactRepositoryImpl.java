@@ -1,49 +1,18 @@
 package org.fundacionjala.contacts.repository;
 
 import org.fundacionjala.contacts.models.Contact;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+@Repository
+public interface ContactRepositoryImpl extends JpaRepository<Contact, Integer> {
+    List<Contact> getAllByNameOrderByName(String name);
+    Optional<Contact> getContactByEmail(String email);
+    @Query("select c from Contact c where c.email like ?1")
+    Optional<Contact> getContactByEmailLike(String string);
 
-public class ContactRepositoryImpl implements ContactRepository {
 
-    public ContactRepositoryImpl() {
-
-    }
-
-    @Override
-    public <S extends Contact> S save(S entity) {
-        // TODO: Implement missing logic here
-        return null;
-    }
-
-    @Override
-    public Optional<Contact> findById(Long id) {
-        // TODO: Implement missing logic here
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean existsById(Long id) {
-        // TODO: Implement missing logic here
-        return false;
-    }
-
-    @Override
-    public Iterable<Contact> findAll() {
-        // TODO: Implement missing logic here
-        return null;
-    }
-
-    @Override
-    public Optional<Contact> findByEmail(String email) {
-        // TODO: Implement missing logic here
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Contact> findByName(String name) {
-        // TODO: Implement missing logic here
-        return null;
-    }
 }
