@@ -7,6 +7,7 @@ import SignUp from "./views/Onboarding/SignUp";
 import ForgotPassword from "./views/Onboarding/ForgotPassword";
 import SignInWithoutPassword from "./views/Onboarding/SignInWithoutPassword";
 import NoMatch from "./views/NoMatch";
+import CreateContact from "./views/Contacts/components/CreateContact";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <LandingPage />
+            {/* <LandingPage /> */}
+            <Singing />
           </Route>
           <Route exact path="/singing">
             <Singing />
@@ -28,8 +30,11 @@ function App() {
           <Route path="/magiclogin" exact>
             <SignInWithoutPassword />
           </Route>
-          <Route path="/">
+          <Route path="/contacts/all">
             <Main />
+          </Route>
+          <Route path="/contacts/add">
+            <CreateContact />
           </Route>
           <Route path="*">
             <NoMatch />

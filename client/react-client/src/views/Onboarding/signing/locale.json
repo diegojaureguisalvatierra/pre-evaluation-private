@@ -16,5 +16,21 @@
     "authentication.footer.text1": "Don’t have an account?",
     "authentication.footer.link1": "Sign Up"
   },
-  "es": {}
+  "es": {
+    "authentication.title": "Bienvenido",
+    "authentication.spin": "Autenticando...",
+    "authentication.form.email.valid-message": "El campo no es valido para E-mail!",
+    "authentication.form.email.required-message": "Porfavor ingrese su E-mail!",
+    "authentication.form.email.placehorder": "Tu dirección de correo o nombre de usuario",
+    "authentication.form.password.required-message": "Porfavor ingresa tu contraseña!",
+    "authentication.form.password.placehorder": "Tu contraseña",
+    "authentication.form.check.label": "Recuerdame",
+    "authentication.form.link.forgot-label": "Contraseña olvidada",
+    "authentication.form.button.label": "Hecho",
+    "authentication.footer.divider.label": "O",
+    "authentication.footer.text": "Solo aprobando contenido?",
+    "authentication.footer.link": "Ingrese sin contraseña",
+    "authentication.footer.text1": "No tiene una cuenta?",
+    "authentication.footer.link1": "RegistrarseSign Up"
+  }
 }
