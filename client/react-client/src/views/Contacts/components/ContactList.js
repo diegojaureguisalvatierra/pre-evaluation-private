@@ -5,6 +5,7 @@ import { useIntl } from "react-intl";
 import browserLanguage from "../../../helpers/browserLanguage";
 import WithIntlProvider from "../../../hoc/WithIntlProvider";
 import locale from "./locale.json";
+import { TableList } from "./TableList";
 
 function ContactList({ history }) {
 
@@ -20,6 +21,12 @@ function ContactList({ history }) {
         </Col>
         <Col className="gutter-row" span={2}>
           <Button type="primary">{intl.formatMessage({ id: "contacts.add" })}</Button>
+        </Col>
+      </Row>
+      <br></br>
+      <Row>
+        <Col span={24}>
+          <TableList ></TableList>
         </Col>
       </Row>
     </Fragment>
