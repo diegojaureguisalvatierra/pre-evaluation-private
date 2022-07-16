@@ -2,12 +2,22 @@
     "en": {
       "contacts.title": "Contacts",
       "contacts.add": "Add Contacts",
-      "contacts.create.title": "Create Contact"
+      "contacts.create.title": "Create Contact",
+      "contacts.search.text": "Search Contact...",
+      "contacts.tab.text": "All",
+      "contacts.button.filters": "More filters",
+      "contacts.button.filters.save": "Save Filters",
+      "contacts.button.sort": "Sort"
     },
     "es": {
       "contacts.title": "Contactos",
       "contacts.add": "Agregar Contactos",
-      "contacts.create.title": "Crear Contacto"
+      "contacts.create.title": "Crear Contacto",
+      "contacts.search.text": "Buscar Contacto...",
+      "contacts.tab.text": "Todos",
+      "contacts.button.filters": "Mas filtros",
+      "contacts.button.filters.save": "Guardar Filtros",
+      "contacts.button.sort": "Ordenar"
     }
 }
   

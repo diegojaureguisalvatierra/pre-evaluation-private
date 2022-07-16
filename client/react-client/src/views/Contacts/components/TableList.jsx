@@ -14,18 +14,18 @@ import { useState } from 'react';
       dataIndex: 'name',
     },
     {
-      key: 'userEmail',
+      key: 'email',
       title: 'User Email',
-      dataIndex: 'userEmail',
+      dataIndex: 'email',
     },
   ];
 
 export function TableList() {    
     const [dataSource, setDataSource] = useState([
-        {userId:1, name:'Jhon', userEmail: 'hola@gmail.com'},
-        {userId:2, name:'a', userEmail: 'f@gmail.com'},
-        {userId:3, name:'s', userEmail: 'r@gmail.com'},
-        {userId:4, name:'d', userEmail: 'y@gmail.com'}
+        {key:1, userId:1, name:'Jhon', email: 'hola@gmail.com'},
+        {key:2, userId:2, name:'a', email: 'f@gmail.com'},
+        {key:3, userId:3, name:'s', email: 'r@gmail.com'},
+        {key:4, userId:4, name:'d', email: 'y@gmail.com'}
     ]);
 
   return (
