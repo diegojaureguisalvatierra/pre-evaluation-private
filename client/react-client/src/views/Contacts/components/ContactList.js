@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { 
   Row, 
   Col, 
@@ -6,8 +6,8 @@ import {
   Tabs,
   Modal,
   Typography,
-  Input,
-  Form
+  Form,
+  Input
 } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import browserLanguage from "../../../helpers/browserLanguage";
@@ -15,6 +15,8 @@ import WithIntlProvider from "../../../hoc/WithIntlProvider";
 import locale from "./locale.json";
 import { TableList } from "./TableList";
 import SearchContactList from "./SearchContactList";
+import CreateContact from "./CreateContact";
+import { v4 as uuidv4} from 'uuid'
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -23,8 +25,20 @@ function ContactList({ history }) {
   const intl = useIntl();
   const [form] = Form.useForm();
 
+  const contactRef = useRef();
+  const contactMailRef = useRef();
+
   const [isCreating, setisCreating] = useState(false);
-  const [creatingContact, setCreatingContact] = useState(null);
+  const [contacts, setContacts] = useState([
+    {key:1, userId:1, name:'Jhon', email: 'hola@gmail.com'},
+    {key:2, userId:2, name:'a', email: 'f@gmail.com'},
+    {key:3, userId:3, name:'s', email: 'r@gmail.com'},
+    {key:4, userId:4, name:'d', email: 'y@gmail.com'}
+  ]);
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
 
   const handleShowModal = (record) => {
     setisCreating(true);
@@ -35,14 +49,19 @@ function ContactList({ history }) {
   };
 
   const handelOkModal = () => {
-    form.validateFields()
-          .then(values => {
-            form.resetFields();
-            onCreate(values);
-          })
-          .catch(info => {
-            console.log('Validate Failed:', info);
-          });
+    const contact = contactRef.current.input.value;
+    const contactMail = contactMailRef.current.input.value;
+
+    if(contact === '' || (contactMail === '' && isValidEmail(contactMail))) return;
+
+    setContacts((prevContacts) => {
+      return [...prevContacts, 
+        {key:uuidv4(), userId:5, name:contact, email: contactMail}
+      ]
+    });
+
+    contactRef.current.value = null;
+    contactMailRef.current.value = null;
 
     setisCreating(false);
   };
@@ -79,7 +98,7 @@ function ContactList({ history }) {
           <br />
           <Row>
             <Col span={24}>
-              <TableList ></TableList>
+              <TableList dataContacts={contacts}></TableList>
             </Col>
           </Row>
         </TabPane>
@@ -95,12 +114,14 @@ function ContactList({ history }) {
             form={form}
             layout="vertical"
             name="form_in_modal"
-            initialValues={{ modifier: 'public' }}
           >
-            <Form.Item name="name" label="Nombre" rules={[{ required: true }]}>
-              <Input />
+            <Form.Item 
+              name="name" 
+              label="Nombre" 
+              rules={[{ required: true }]}
+              >
+              <Input ref={contactRef}/>
             </Form.Item>
-
             <Form.Item
               name="email"
               label="E-mail"
@@ -115,7 +136,7 @@ function ContactList({ history }) {
                 },
               ]}
             >
-              <Input />
+              <Input ref={contactMailRef}/>
             </Form.Item>
           </Form>
       </Modal>

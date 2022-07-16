@@ -26,8 +26,6 @@ export default function SearchContactList() {
                     style={{
                         width: "100%"
                     }}>
-                    <Option value="Sign Up">Sign Up</Option>
-                    <Option value="Sign In">Sign In</Option>
                 </Select>
             </Col>
             <Col span={3}>

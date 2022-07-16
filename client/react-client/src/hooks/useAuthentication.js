@@ -1,3 +1,3 @@
 export function useAuthentication() {
-  return "";
+  return sessionStorage.getItem("token");
 }

@@ -1,19 +1,40 @@
-import React, { useCallback } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import React, { useCallback, useRef } from "react";
+import { Form, Input, Button, Checkbox, notification } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { FormattedMessage, useIntl } from "react-intl";
 
 function LoginForm({ history, homePath }) {
   const intl = useIntl();
   const onFinish = useCallback([history, homePath]);
 
+  const userRef = useRef();
+  const passwordRef = useRef();
+
+  const user = "admin";
+  const password = "admin";
+
+  const onSubmit = () => {
+    const user = userRef.current.input.value;
+    const password = passwordRef.current.input.value;
+    
+    if(user === '' || password === '') return;
+
+    if(user !== 'admin' && password !== 'admin'){
+      notification.open({
+        message: 'Incorrecto',
+        description:
+          'Usuario o contraseña incorrectos',
+      });
+    }else
+      return window.location.href = "http://localhost:3000/contacts/all";
+  };
+
   return (
     <Form
       name="normal_login"
       className="container-form"
       initialValues={{ rememberMe: true }}
-      onFinish={onFinish}
     >
       <Form.Item
         name="username"
@@ -28,6 +49,7 @@ function LoginForm({ history, homePath }) {
       >
         <Input
           prefix={<UserOutlined />}
+          ref={userRef}
           placeholder={intl.formatMessage({
             id: "authentication.form.email.placehorder",
           })}
@@ -47,6 +69,7 @@ function LoginForm({ history, homePath }) {
         <Input
           prefix={<LockOutlined />}
           type="password"
+          ref={passwordRef}
           placeholder={intl.formatMessage({
             id: "authentication.form.password.placehorder",
           })}
@@ -61,7 +84,9 @@ function LoginForm({ history, homePath }) {
         </Checkbox>
       </Form.Item>
       <Form.Item>
-        <Button style={{ width: "100%" }} type="primary" htmlType="submit">
+        <Button style={{ width: "100%" }} 
+                type="primary" /* htmlType="submit" */
+                onClick={onSubmit}>
           <FormattedMessage id="authentication.form.button.label" />
         </Button>
       </Form.Item>
